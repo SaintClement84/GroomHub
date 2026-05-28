@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -11,7 +11,7 @@
 
     <header class="static-topbar">
       <a class="static-brand" href="./index.html">
-        <span class="logo" style="width: 38px; height: 38px">G</span>
+        <span class="logo" style="width:38px;height:38px;">G</span>
         <span>
           <span class="brand-title">GROOMHUB</span>
           <span class="brand-sub">Calendar Preview</span>
@@ -50,14 +50,11 @@
         <div class="side-section">
           <div class="side-label">Current User</div>
           <div class="user-card">
-            <div class="user-avatar" id="currentUserAvatar">KD</div>
+            <div class="user-avatar">KD</div>
             <div class="user-meta">
-              <div class="user-name" id="currentUserName">Kabelo D.</div>
-              <div class="user-role" id="currentUserRole">
-                Student Entrepreneur
-              </div>
+              <div class="user-name">Kabelo D.</div>
+              <div class="user-role">Student Entrepreneur</div>
             </div>
-            <div class="mini-note" id="onlineBadge">Logged in online</div>
           </div>
         </div>
       </div>
@@ -66,9 +63,7 @@
         <div class="static-top">
           <div>
             <h1 class="page-title">Academic Calendar</h1>
-            <p class="muted">
-              Lecture blocks are protected. Booking slots remain conflict-free.
-            </p>
+            <p class="muted">Lecture blocks are protected. Booking slots remain conflict-free.</p>
           </div>
           <div class="top-actions">
             <div class="badge">WCAG AA Enabled</div>
@@ -82,42 +77,42 @@
               <h3 class="panel-title">Week View</h3>
               <div class="panel-sub">Static preview</div>
             </div>
-
-            <div class="legend" aria-label="Calendar legend">
-              <div class="legend-item">
-                <span class="dot blocked" aria-hidden="true"></span>
-                <span>Lecture</span>
-              </div>
-              <div class="legend-item">
-                <span class="dot booked" aria-hidden="true"></span>
-                <span>Booked</span>
-              </div>
-              <div class="legend-item">
-                <span class="dot available" aria-hidden="true"></span>
-                <span>Available</span>
-              </div>
+            <div class="legend">
+              <div class="legend-item"><span class="dot blocked"></span> Lecture</div>
+              <div class="legend-item"><span class="dot booked"></span> Booked</div>
+              <div class="legend-item"><span class="dot available"></span> Available</div>
             </div>
           </div>
 
           <div class="calendar-wrap">
-            <div class="calendar-container">
-              <iframe
-                src="https://calendar.google.com/calendar/embed?src=en.za%23holiday%40group.v.calendar.google.com&ctz=Africa%2FJohannesburg"
-                style="border: 0"
-                width="100%"
-                height="600"
-                frameborder="0"
-                scrolling="no"
-              ></iframe>
+            <div class="cal-days">
+              <div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div>
+            </div>
+            <div class="cal-grid" id="calGrid">
+              <!-- filled by script -->
             </div>
           </div>
 
-          <div class="mini-note">
-            Tip: When the real app runs, slots will be blocked based on your
-            uploaded timetable.
-          </div>
+          <div class="mini-note">Tip: When the real app runs, slots will be blocked based on your uploaded timetable.</div>
         </section>
       </div>
     </main>
+
+    <script>
+      const days = 5;
+      const totalCells = 15; // mimic prototype
+      const blocked = new Set([2, 8]);
+      const booked = new Set([5, 12]);
+      const grid = document.getElementById('calGrid');
+      for (let i=0;i<totalCells;i++){
+        const div = document.createElement('div');
+        div.className = 'cal-cell';
+        if (blocked.has(i)) { div.classList.add('blocked'); div.textContent='Lecture'; }
+        else if (booked.has(i)) { div.classList.add('booked'); div.textContent='Booked'; }
+        else { div.classList.add('available'); div.textContent='Available'; }
+        grid.appendChild(div);
+      }
+    </script>
   </body>
 </html>
+
