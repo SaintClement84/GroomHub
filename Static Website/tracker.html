@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GroomHub — Grooming Tracker Preview</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="bg-grid" aria-hidden="true"></div>
+
+    <header class="static-topbar">
+      <a class="static-brand" href="./index.html">
+        <span class="logo" style="width:38px;height:38px;">G</span>
+        <span>
+          <span class="brand-title">GROOMHUB</span>
+          <span class="brand-sub">Tracker Preview</span>
+        </span>
+      </a>
+      <nav class="static-nav">
+        <a href="./dashboard.html" class="nav-pill">Dashboard</a>
+        <a href="./calendar.html" class="nav-pill">Calendar</a>
+        <a href="./book.html" class="nav-pill">Booking</a>
+        <a href="./tracker.html" class="nav-pill active">Tracker</a>
+        <a href="./social.html" class="nav-pill">Social</a>
+        <a href="./settings.html" class="nav-pill">Settings</a>
+      </nav>
+    </header>
+
+    <main class="static-main">
+      <div class="static-sidebar">
+        <div class="side-brand">
+          <div class="side-logo">G</div>
+          <div>
+            <div class="side-title">GROOMHUB</div>
+            <div class="side-sub">Grooming habits & history</div>
+          </div>
+        </div>
+        <div class="side-section">
+          <div class="side-label">Navigation</div>
+          <div class="side-links">
+            <a href="./dashboard.html" class="side-link">Dashboard</a>
+            <a href="./calendar.html" class="side-link">Calendar</a>
+            <a href="./book.html" class="side-link">Booking</a>
+            <a href="./tracker.html" class="side-link active">Tracker</a>
+            <a href="./social.html" class="side-link">Social Feed</a>
+            <a href="./settings.html" class="side-link">Settings</a>
+          </div>
+        </div>
+        <div class="side-section">
+          <div class="side-label">Current User</div>
+          <div class="user-card">
+            <div class="user-avatar">KD</div>
+            <div class="user-meta">
+              <div class="user-name">Kabelo D.</div>
+              <div class="user-role">Student Entrepreneur</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="static-content">
+        <div class="static-top">
+          <div>
+            <h1 class="page-title">Grooming Tracker</h1>
+            <p class="muted">Log styles, products and notes — keep your style on point.</p>
+          </div>
+          <div class="top-actions">
+            <div class="badge">Consistency is key</div>
+            <a class="cta" href="./book.html">Book a Service</a>
+          </div>
+        </div>
+
+        <section class="grid2">
+          <div class="panel">
+            <div class="panel-head">
+              <div>
+                <h3 class="panel-title">Add New Record</h3>
+                <div class="panel-sub">Static preview (no save)</div>
+              </div>
+              <a class="small-pill ghost" href="./lookbook.html">Lookbook</a>
+            </div>
+
+            <div class="form-rows">
+              <div class="row-box">
+                <div class="row-label">Style</div>
+                <div class="row-value">Low Fade</div>
+              </div>
+              <div class="row-box">
+                <div class="row-label">Date</div>
+                <div class="row-value">14 May 2025</div>
+              </div>
+              <div class="row-box">
+                <div class="row-label">Products Used</div>
+                <div class="row-value">Cantu Cream, Oil Sheen</div>
+              </div>
+              <div class="row-box">
+                <div class="row-label">Notes</div>
+                <div class="row-value">Came out clean. Will book again.</div>
+              </div>
+              <button class="btn" type="button" disabled>Save Record (Preview)</button>
+            </div>
+          </div>
+
+          <div class="panel">
+            <h3 class="panel-title">History</h3>
+            <div class="panel-sub">Recent grooming logs</div>
+            <div class="history-list">
+              <div class="history-item"><b>Low Fade</b><span class="muted">— 14 May 2025</span></div>
+              <div class="history-item"><b>Braids</b><span class="muted">— 6 May 2025</span></div>
+              <div class="history-item"><b>Taper Cut</b><span class="muted">— 28 Apr 2025</span></div>
+              <div class="history-item"><b>Line Up</b><span class="muted">— 20 Apr 2025</span></div>
+            </div>
+            <div class="mini-note">Preview only—wire to your real records page later.</div>
+          </div>
+        </section>
+
+        <section class="panel">
+          <h3 class="panel-title">Tips & Reminders</h3>
+          <div class="panel-sub">Keep your routine on track</div>
+          <div class="tip-grid">
+            <div class="tip">Keep your scalp clean and hydrated.</div>
+            <div class="tip">Trim every 2–3 weeks.</div>
+            <div class="tip">Use quality products.</div>
+            <div class="tip">Drink water. Stay fresh!</div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>
+

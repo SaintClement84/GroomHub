@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GroomHub — Marketplace</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="bg-grid" aria-hidden="true"></div>
+
+    <header class="static-topbar">
+      <a class="static-brand" href="./index.html" aria-label="GroomHub home">
+        <span class="logo" style="width: 38px; height: 38px">G</span>
+        <span>
+          <span class="brand-title">GROOMHUB</span>
+          <span class="brand-sub">Marketplace</span>
+        </span>
+      </a>
+
+      <nav class="static-nav" aria-label="Preview navigation">
+        <a href="./dashboard.html" class="nav-pill">Dashboard</a>
+        <a href="./calendar.html" class="nav-pill">Calendar</a>
+        <a href="./book.html" class="nav-pill">Booking</a>
+        <a href="./tracker.html" class="nav-pill">Tracker</a>
+        <a href="./marketplace.html" class="nav-pill active">Marketplace</a>
+        <a href="./social.html" class="nav-pill">Social</a>
+        <a href="./settings.html" class="nav-pill">Settings</a>
+      </nav>
+    </header>
+
+    <main class="static-main">
+      <div class="static-sidebar">
+        <div class="side-brand">
+          <div class="side-logo" aria-hidden="true">G</div>
+          <div>
+            <div class="side-title">GROOMHUB</div>
+            <div class="side-sub">Tools and products</div>
+          </div>
+        </div>
+
+        <div class="side-section">
+          <div class="side-label">Navigation</div>
+          <div class="side-links">
+            <a href="./dashboard.html" class="side-link">Dashboard</a>
+            <a href="./calendar.html" class="side-link">Calendar</a>
+            <a href="./book.html" class="side-link">Booking</a>
+            <a href="./tracker.html" class="side-link">Tracker</a>
+            <a href="./marketplace.html" class="side-link active"
+              >Marketplace</a
+            >
+            <a href="./social.html" class="side-link">Social Feed</a>
+            <a href="./settings.html" class="side-link">Settings</a>
+          </div>
+        </div>
+
+        <div class="side-section">
+          <div class="side-label">Shopping Cart</div>
+          <div class="user-card" style="justify-content: space-between">
+            <div>
+              <div class="user-name" id="currentUserName">Items</div>
+              <div class="user-role" id="currentUserRole">
+                Saved for checkout
+              </div>
+            </div>
+            <div
+              class="ring"
+              id="cartCount"
+              style="width: 70px; height: 70px; border-width: 8px"
+              aria-label="Cart count"
+            >
+              0%
+            </div>
+          </div>
+          <div
+            style="
+              margin-top: 12px;
+              display: flex;
+              flex-direction: column;
+              gap: 10px;
+            "
+          >
+            <button
+              class="btn secondary"
+              id="viewCartBtn"
+              type="button"
+              style="width: 100%"
+            >
+              View cart
+            </button>
+            <button
+              class="btn"
+              id="checkoutBtn"
+              type="button"
+              style="width: 100%"
+            >
+              Checkout (demo)
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="static-content">
+        <div class="static-top">
+          <div>
+            <h1 class="page-title">Marketplace</h1>
+            <p class="muted">
+              Browse products + add to cart. Everything is stored locally
+              (demo).
+            </p>
+          </div>
+          <div class="top-actions">
+            <div class="badge gold">Logic-only Phase 3</div>
+          </div>
+        </div>
+
+        <section class="panel">
+          <div class="panel-head">
+            <div>
+              <h3 class="panel-title">Shop by Category</h3>
+              <div class="panel-sub">Filter products (local state)</div>
+            </div>
+          </div>
+
+          <div class="form-rows compact" style="margin-top: 0">
+            <div
+              class="toggle-row"
+              style="justify-content: flex-start; gap: 16px"
+            >
+              <span style="font-weight: 900">Category</span>
+              <select id="marketCategory">
+                <option value="All">All</option>
+              </select>
+              <span
+                id="marketStatus"
+                class="tiny-muted"
+                style="margin-left: auto"
+                >Booting…</span
+              >
+            </div>
+          </div>
+
+          <div
+            id="marketGrid"
+            style="
+              margin-top: 16px;
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+              gap: 14px;
+            "
+          ></div>
+        </section>
+
+        <section class="panel" style="margin-top: 18px">
+          <div class="panel-head">
+            <div>
+              <h3 class="panel-title">Cart & Recent Activity</h3>
+              <div class="panel-sub">
+                Add/remove items; checkout writes to history
+              </div>
+            </div>
+            <div class="badge">localStorage</div>
+          </div>
+
+          <div class="grid2">
+            <div>
+              <div class="section-title">Cart items</div>
+              <div
+                id="cartList"
+                class="history-list"
+                style="margin-top: 10px"
+              ></div>
+              <div id="cartEmpty" class="mini-note" style="display: none">
+                Your cart is empty. Add items from the shop.
+              </div>
+            </div>
+
+            <div>
+              <div class="section-title">Recent activity</div>
+              <div
+                id="activityList"
+                class="history-list"
+                style="margin-top: 10px"
+              ></div>
+              <div class="mini-note">
+                Checkout records are kept locally to mimic app activity.
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
