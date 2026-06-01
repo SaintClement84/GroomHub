@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GroomHub — Social Feed Preview</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="bg-grid" aria-hidden="true"></div>
+
+    <header class="static-topbar">
+      <a class="static-brand" href="./index.html">
+        <span class="logo" style="width:38px;height:38px;">G</span>
+        <span>
+          <span class="brand-title">GROOMHUB</span>
+          <span class="brand-sub">Social Preview</span>
+        </span>
+      </a>
+      <nav class="static-nav">
+        <a href="./dashboard.html" class="nav-pill">Dashboard</a>
+        <a href="./calendar.html" class="nav-pill">Calendar</a>
+        <a href="./book.html" class="nav-pill">Booking</a>
+        <a href="./tracker.html" class="nav-pill">Tracker</a>
+        <a href="./social.html" class="nav-pill active">Social</a>
+        <a href="./settings.html" class="nav-pill">Settings</a>
+      </nav>
+    </header>
+
+    <main class="static-main">
+      <div class="static-sidebar">
+        <div class="side-brand">
+          <div class="side-logo">G</div>
+          <div>
+            <div class="side-title">GROOMHUB</div>
+            <div class="side-sub">Community & trust</div>
+          </div>
+        </div>
+        <div class="side-section">
+          <div class="side-label">Navigation</div>
+          <div class="side-links">
+            <a href="./dashboard.html" class="side-link">Dashboard</a>
+            <a href="./calendar.html" class="side-link">Calendar</a>
+            <a href="./book.html" class="side-link">Booking</a>
+            <a href="./tracker.html" class="side-link">Tracker</a>
+            <a href="./social.html" class="side-link active">Social Feed</a>
+            <a href="./settings.html" class="side-link">Settings</a>
+          </div>
+        </div>
+        <div class="side-section">
+          <div class="side-label">Current User</div>
+          <div class="user-card">
+            <div class="user-avatar">KD</div>
+            <div class="user-meta">
+              <div class="user-name">Kabelo D.</div>
+              <div class="user-role">Student Entrepreneur</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="static-content">
+        <div class="static-top">
+          <div>
+            <h1 class="page-title">Social Feed</h1>
+            <p class="muted">Connect. Share. Inspire.</p>
+          </div>
+          <div class="top-actions">
+            <div class="badge">Community rules</div>
+            <a class="cta" href="./dashboard.html">Back</a>
+          </div>
+        </div>
+
+        <section class="panel">
+          <div class="panel-head">
+            <div>
+              <h3 class="panel-title">Composer</h3>
+              <div class="panel-sub">Static preview (no post)</div>
+            </div>
+            <button class="small-pill ghost" type="button" disabled>Post</button>
+          </div>
+          <div class="composer">
+            <div class="composer-avatar">KD</div>
+            <input class="composer-input" type="text" value="Fresh fade completed for a student client before presentation week." disabled />
+          </div>
+        </section>
+
+        <section class="grid2">
+          <article class="panel post">
+            <div class="post-head">
+              <div class="post-avatar">SK</div>
+              <div>
+                <div class="post-name">Sipho K.</div>
+                <div class="muted">Beard Artist · 2h ago</div>
+              </div>
+              <div class="ghost-pill">Top Rated</div>
+            </div>
+            <p class="post-text">Fresh line up and beard trim. Confidence booster! ✨</p>
+            <div class="post-tags"><span>#BeardGameStrong</span><span>#CleanLook</span><span>#GroomHub</span></div>
+            <div class="post-actions">
+              <span>❤️ 124</span><span>💬 28</span><span>⭐ 4.9</span><span>↗ 9</span>
+            </div>
+          </article>
+
+          <aside class="panel">
+            <h3 class="panel-title">Trending Topics</h3>
+            <div class="panel-sub">Static preview</div>
+            <div class="trend-list">
+              <div class="trend"><b>FadeFriday</b><span class="muted"> · 1.2K posts</span></div>
+              <div class="trend"><b>BeardGoals</b><span class="muted"> · 982 posts</span></div>
+              <div class="trend"><b>BraidsSeason</b><span class="muted"> · 756 posts</span></div>
+              <div class="trend"><b>LocsJourney</b><span class="muted"> · 643 posts</span></div>
+            </div>
+            <div class="mini-note">Wire to your backend later.</div>
+          </aside>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>
+

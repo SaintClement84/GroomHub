@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GroomHub — Login</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="bg-grid" aria-hidden="true"></div>
+
+    <main class="page">
+      <section class="card" role="region" aria-label="Authentication card">
+        <header class="brand">
+          <div class="logo" aria-hidden="true">G</div>
+          <div class="brand-text">
+            <h1>GROOMHUB</h1>
+            <p>Student Grooming Ecosystem</p>
+          </div>
+        </header>
+
+        <div class="hero">
+          <div class="pill"><h2>Register / login</h2></div>
+        </div>
+
+        <div
+          style="
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            align-items: start;
+          "
+        >
+          <!-- Register -->
+          <section class="panel" style="padding: 18px; margin: 0">
+            <h3 class="panel-title" style="margin-bottom: 6px">Register</h3>
+            <div class="panel-sub" style="margin-top: 0">
+              Create a new account
+            </div>
+
+            <form
+              id="registerForm"
+              class="form"
+              autocomplete="on"
+              style="margin-top: 14px"
+            >
+              <label class="field">
+                <span class="label">Name</span>
+                <input
+                  id="regName"
+                  name="name"
+                  type="text"
+                  placeholder="e.g., Thandi"
+                  maxlength="80"
+                  required
+                />
+              </label>
+
+              <label class="field">
+                <span class="label">Optional Surname</span>
+                <input
+                  id="regSurname"
+                  name="surname"
+                  type="text"
+                  placeholder="e.g., M."
+                  maxlength="80"
+                />
+              </label>
+
+              <label class="field">
+                <span class="label">Institution name</span>
+                <input
+                  id="regInstitution"
+                  name="institution"
+                  type="text"
+                  placeholder="e.g., Rosebank College"
+                  maxlength="120"
+                  required
+                />
+              </label>
+
+              <label class="field">
+                <span class="label">Email address</span>
+                <input
+                  id="regEmail"
+                  name="email"
+                  type="email"
+                  placeholder="name@university.edu"
+                  required
+                />
+              </label>
+
+              <label class="field">
+                <span class="label">Create Password</span>
+                <input
+                  id="regPassword"
+                  name="password"
+                  type="password"
+                  placeholder="Create a strong password"
+                  required
+                />
+              </label>
+
+              <label class="field">
+                <span class="label">Confirm Password</span>
+                <input
+                  id="regConfirmPassword"
+                  name="confirmPassword"
+                  type="password"
+                  placeholder="Re-enter your password"
+                  required
+                />
+              </label>
+
+              <button class="btn" type="submit" style="margin-top: 2px">
+                Create account
+              </button>
+              <p
+                class="hint"
+                id="registerStatus"
+                role="status"
+                aria-live="polite"
+              ></p>
+            </form>
+          </section>
+
+          <!-- Login -->
+          <section
+            class="panel"
+            style="padding: 18px; margin: 0; background: rgba(12, 12, 14, 0.25)"
+          >
+            <h3 class="panel-title" style="margin-bottom: 6px">Log in</h3>
+            <div class="panel-sub" style="margin-top: 0">
+              Use your email and password
+            </div>
+
+            <form
+              id="loginForm"
+              class="form"
+              autocomplete="on"
+              style="margin-top: 14px"
+            >
+              <label class="field">
+                <span class="label">Email address</span>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="name@university.edu"
+                  required
+                />
+              </label>
+
+              <label class="field">
+                <span class="label">Password</span>
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  placeholder="Enter your password"
+                  required
+                />
+              </label>
+
+              <div class="row">
+                <label class="check">
+                  <input id="remember" name="remember" type="checkbox" />
+                  <span>Remember user name</span>
+                </label>
+                <a class="link" href="#" id="forgotLink">Forgot?</a>
+              </div>
+
+              <button class="btn" type="submit">Log in</button>
+              <p class="hint" id="status" role="status" aria-live="polite"></p>
+            </form>
+
+            <div
+              class="divider"
+              aria-hidden="true"
+              style="margin-top: 16px"
+            ></div>
+
+            <div class="actions" style="margin-top: 10px">
+              <a class="btn secondary" href="#" id="demoLogin"
+                >Continue as demo</a
+              >
+            </div>
+          </section>
+        </div>
+
+        <footer class="foot">
+          <span>© <span id="year"></span> GroomHub</span>
+          <span class="muted"
+            >Whatsapp: 0717590255 • Email: st10440562@rcconnect.edu.za •
+            Designer: Clement K Seiphehlo</span
+          >
+        </footer>
+      </section>
+    </main>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

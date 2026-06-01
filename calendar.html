@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GroomHub — Calendar Preview</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="bg-grid" aria-hidden="true"></div>
+
+    <header class="static-topbar">
+      <a class="static-brand" href="./index.html">
+        <span class="logo" style="width: 38px; height: 38px">G</span>
+        <span>
+          <span class="brand-title">GROOMHUB</span>
+          <span class="brand-sub">Calendar Preview</span>
+        </span>
+      </a>
+      <nav class="static-nav">
+        <a href="./dashboard.html" class="nav-pill">Dashboard</a>
+        <a href="./calendar.html" class="nav-pill active">Calendar</a>
+        <a href="./book.html" class="nav-pill">Booking</a>
+        <a href="./tracker.html" class="nav-pill">Tracker</a>
+        <a href="./social.html" class="nav-pill">Social</a>
+        <a href="./settings.html" class="nav-pill">Settings</a>
+      </nav>
+    </header>
+
+    <main class="static-main">
+      <div class="static-sidebar">
+        <div class="side-brand">
+          <div class="side-logo">G</div>
+          <div>
+            <div class="side-title">GROOMHUB</div>
+            <div class="side-sub">Constraint-first calendar</div>
+          </div>
+        </div>
+        <div class="side-section">
+          <div class="side-label">Navigation</div>
+          <div class="side-links">
+            <a href="./dashboard.html" class="side-link">Dashboard</a>
+            <a href="./calendar.html" class="side-link active">Calendar</a>
+            <a href="./book.html" class="side-link">Booking</a>
+            <a href="./tracker.html" class="side-link">Tracker</a>
+            <a href="./social.html" class="side-link">Social Feed</a>
+            <a href="./settings.html" class="side-link">Settings</a>
+          </div>
+        </div>
+        <div class="side-section">
+          <div class="side-label">Current User</div>
+          <div class="user-card">
+            <div class="user-avatar" id="currentUserAvatar">KD</div>
+            <div class="user-meta">
+              <div class="user-name" id="currentUserName">Kabelo D.</div>
+              <div class="user-role" id="currentUserRole">
+                Student Entrepreneur
+              </div>
+            </div>
+            <div class="mini-note" id="onlineBadge">Logged in online</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="static-content">
+        <div class="static-top">
+          <div>
+            <h1 class="page-title">Academic Calendar</h1>
+            <p class="muted">
+              Lecture blocks are protected. Booking slots remain conflict-free.
+            </p>
+          </div>
+          <div class="top-actions">
+            <div class="badge">WCAG AA Enabled</div>
+            <a class="cta" href="./book.html">Book Now</a>
+          </div>
+        </div>
+
+        <section class="panel">
+          <div class="panel-head">
+            <div>
+              <h3 class="panel-title">Week View</h3>
+              <div class="panel-sub">Static preview</div>
+            </div>
+
+            <div class="legend" aria-label="Calendar legend">
+              <div class="legend-item">
+                <span class="dot blocked" aria-hidden="true"></span>
+                <span>Lecture</span>
+              </div>
+              <div class="legend-item">
+                <span class="dot booked" aria-hidden="true"></span>
+                <span>Booked</span>
+              </div>
+              <div class="legend-item">
+                <span class="dot available" aria-hidden="true"></span>
+                <span>Available</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="calendar-wrap">
+            <div class="calendar-container">
+              <iframe
+                src="https://calendar.google.com/calendar/embed?src=en.za%23holiday%40group.v.calendar.google.com&ctz=Africa%2FJohannesburg"
+                style="border: 0"
+                width="100%"
+                height="600"
+                frameborder="0"
+                scrolling="no"
+              ></iframe>
+            </div>
+          </div>
+
+          <div class="mini-note">
+            Tip: When the real app runs, slots will be blocked based on your
+            uploaded timetable.
+          </div>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>
