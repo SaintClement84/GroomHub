@@ -3,26 +3,148 @@ const $ = (sel) => document.querySelector(sel);
 const form = $("#loginForm");
 const statusEl = $("#status");
 const yearEl = $("#year");
-yearEl.textContent = new Date().getFullYear();
+if (yearEl) yearEl.textContent = new Date().getFullYear();
 
 function setStatus(msg) {
-  statusEl.textContent = msg;
+  if (statusEl) statusEl.textContent = msg;
 }
 
-function fakeLogin(email) {
-  // Local-only demo. Replace with real API later.
-  const payload = {
-    email,
-    at: new Date().toISOString(),
-  };
+
+const SESSION_KEY = "groomhub_v2_session";
+
+// ===== Auth (Phase 1) — registration-first using localStorage as "built-in database" =====
+const USERS_KEY = "groomhub_v2_users";
+const LEGACY_LOGIN_KEY = "groomhub.static.login.v1";
+const DEMO_EMAIL = "demo@students.edu";
+
+function safeJsonParse(raw, fallback) {
   try {
-    localStorage.setItem("groomhub.static.login.v1", JSON.stringify(payload));
+    return JSON.parse(raw);
+  } catch {
+    return fallback;
+  }
+}
+
+function loadUsersDb() {
+  try {
+    const raw = localStorage.getItem(USERS_KEY);
+    const parsed = safeJsonParse(raw, { users: [] });
+    return {
+      users: Array.isArray(parsed?.users) ? parsed.users : [],
+    };
+  } catch {
+    return { users: [] };
+  }
+}
+
+function saveUsersDb(db) {
+  try {
+    localStorage.setItem(USERS_KEY, JSON.stringify(db));
   } catch {
     // ignore
   }
 }
 
-const SESSION_KEY = "groomhub_v2_session";
+async function hashPassword(plain) {
+  const input = String(plain ?? "");
+
+  // Prefer real hashing with WebCrypto.
+  if (typeof crypto !== "undefined" && crypto.subtle && crypto.subtle.digest) {
+    const enc = new TextEncoder();
+    const bytes = enc.encode(input);
+    const digest = await crypto.subtle.digest("SHA-256", bytes);
+    return Array.from(new Uint8Array(digest))
+      .map((b) => b.toString(16).padStart(2, "0"))
+      .join("");
+  }
+
+  // Fallback (still functional, but not cryptographically strong).
+  return input;
+}
+
+function getUserByEmail(email) {
+  const db = loadUsersDb();
+  return db.users.find((u) => String(u.email || "").toLowerCase() === String(email || "").toLowerCase()) || null;
+}
+
+async function registerUser({ name, email, password }) {
+  const existing = getUserByEmail(email);
+  if (existing) {
+    return { ok: false, error: "An account with this email already exists." };
+  }
+
+  const id = `u_${Date.now()}_${Math.random().toString(16).slice(2)}`;
+  const passwordHash = await hashPassword(password);
+
+  const db = loadUsersDb();
+  db.users.push({
+    id,
+    name: name ? String(name).trim() : "",
+    email: String(email).trim(),
+    passwordHash,
+    createdAt: new Date().toISOString(),
+  });
+  saveUsersDb(db);
+
+  return { ok: true };
+}
+
+async function verifyLogin({ email, password }) {
+  const user = getUserByEmail(email);
+  if (!user) return { ok: false, error: "No account found for this email. Please create one." };
+
+  const passwordHash = await hashPassword(password);
+  if (String(user.passwordHash) !== String(passwordHash)) {
+    return { ok: false, error: "Incorrect password." };
+  }
+
+  return { ok: true, user };
+}
+
+function createLegacyLoginRecord(email) {
+  const payload = {
+    email,
+    at: new Date().toISOString(),
+  };
+  try {
+    localStorage.setItem(LEGACY_LOGIN_KEY, JSON.stringify(payload));
+  } catch {
+    // ignore
+  }
+}
+
+function setStatus(msg) {
+  const el = document.getElementById("status");
+  if (el) el.textContent = msg;
+}
+
+async function ensureDemoUser() {
+  const demo = getUserByEmail(DEMO_EMAIL);
+  if (demo) return;
+  // Demo password can be "demo1234"; user can change later by registering.
+  await registerUser({ name: "Demo Student", email: DEMO_EMAIL, password: "demo1234" });
+}
+
+function requireAuthOrRedirect() {
+  // Allow login/signup pages.
+  const path = (window.location.pathname || "").toLowerCase();
+  const isLoginPage = path.endsWith("index.html") || path.endsWith("/index.html");
+  const isSignupPage = path.endsWith("signup.html") || path.endsWith("/signup.html");
+  if (isLoginPage || isSignupPage) return;
+
+  const ok = isLoggedIn();
+  if (!ok) {
+    try {
+      const url = new URL(window.location.href);
+      url.searchParams.set("auth", "required");
+      window.location.href = `./index.html?auth=required`;
+    } catch {
+      window.location.href = "./index.html?auth=required";
+    }
+  }
+}
+
+
 
 function isLoggedIn() {
   try {
@@ -42,6 +164,34 @@ function getSession() {
   }
 }
 
+function applySessionToHeader() {
+  const session = getSession();
+  const user = session?.user;
+  if (!user) return;
+
+  // Update the “Current User” block on protected pages.
+  const nameEl = document.getElementById("currentUserName");
+  const roleEl = document.getElementById("currentUserRole");
+  const avatarEl = document.getElementById("currentUserAvatar");
+
+  if (nameEl) nameEl.textContent = user.name || user.email || "Student";
+  if (roleEl) roleEl.textContent = "Online";
+
+  if (avatarEl) {
+    const initial = String(user.name || user.email || "U")
+      .trim()
+      .charAt(0)
+      .toUpperCase();
+    avatarEl.textContent = initial;
+  }
+
+  // Paper-trail UX requested: show online status under the logo on pages
+  // that include a placeholder.
+  const onlineEl = document.getElementById("onlineBadge");
+  if (onlineEl) onlineEl.textContent = "Logged in online";
+}
+
+
 function setSession(user) {
   try {
     window.localStorage.setItem(
@@ -58,38 +208,48 @@ function getUserFromForm(email) {
   return { email };
 }
 
-function fakeLogin(email) {
-  const payload = { email, at: new Date().toISOString() };
-  try {
-    // Keep legacy key for any existing code, but use groomhub-v2-like key for new logic.
-    localStorage.setItem("groomhub.static.login.v1", JSON.stringify(payload));
-    setSession(getUserFromForm(email));
-  } catch {
-    // ignore
-  }
+async function doLogin({ email, password }) {
+  if (!email) return { ok: false, error: "Please enter your email." };
+  if (!password) return { ok: false, error: "Please enter your password." };
+
+  const res = await verifyLogin({ email, password });
+  if (!res.ok) return res;
+
+  // keep legacy key for any existing code, but use groomhub-v2-like session for new logic.
+  createLegacyLoginRecord(email);
+  setSession({ email: res.user.email, name: res.user.name || "" });
+  return { ok: true };
 }
 
-// Phase 1 login: no loop; land on dashboard.
-form?.addEventListener("submit", (e) => {
+// Phase 1 login: land on dashboard only if credentials match an existing registered account.
+form?.addEventListener("submit", async (e) => {
   e.preventDefault();
   const email = $("#email")?.value?.trim() ?? "";
   const password = $("#password")?.value ?? "";
 
-  if (!email) return setStatus("Please enter your email.");
-  if (!password) return setStatus("Please enter your password.");
+  const { ok, error } = await doLogin({ email, password });
+  if (!ok) {
+    setStatus(error || "Login failed. Please try again.");
+    return;
+  }
 
-  fakeLogin(email);
-  setStatus("Logged in (static demo). Redirecting to dashboard…");
-
+  setStatus("Logged in. Redirecting to dashboard…");
   setTimeout(() => {
     window.location.href = "./dashboard.html";
-  }, 600);
+  }, 500);
 });
 
 
-$("#demoLogin")?.addEventListener("click", (e) => {
+$("#demoLogin")?.addEventListener("click", async (e) => {
   e.preventDefault();
-  fakeLogin("demo@students.edu");
+  await ensureDemoUser();
+  // Demo password is fixed; the demo user can also be created via signup page.
+  const { ok } = await doLogin({ email: DEMO_EMAIL, password: "demo1234" });
+  if (!ok) {
+    setStatus("Demo login failed. Please use Create account.");
+    return;
+  }
+
   setStatus("Demo mode enabled. Redirecting to dashboard…");
   setTimeout(() => {
     window.location.href = "./dashboard.html";
@@ -99,16 +259,76 @@ $("#demoLogin")?.addEventListener("click", (e) => {
 
 $("#signupLink")?.addEventListener("click", (e) => {
   e.preventDefault();
-  setStatus("Signup not implemented in static preview. Wire to /signup when runtime is available.");
+  window.location.href = "./signup.html";
 });
+
 
 $("#forgotLink")?.addEventListener("click", (e) => {
   e.preventDefault();
   setStatus("Password reset not implemented in static preview.");
 });
 
+// ===== Phase 2: Signup (localStorage) =====
+const signupForm = $("#signupForm");
+const signupEmailEl = $("#signupEmail");
+const signupPasswordEl = $("#signupPassword");
+const confirmPasswordEl = $("#confirmPassword");
+const signupNameEl = $("#name");
+const signupStatusEl = $("#signupStatus");
+
+function setSignupStatus(msg) {
+  if (signupStatusEl) signupStatusEl.textContent = msg;
+}
+
+signupForm?.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const name = signupNameEl?.value?.trim() ?? "";
+  const email = signupEmailEl?.value?.trim() ?? "";
+  const password = signupPasswordEl?.value ?? "";
+  const confirmPassword = confirmPasswordEl?.value ?? "";
+
+  if (!email) {
+    setSignupStatus("Please enter your email.");
+    return;
+  }
+  if (!password) {
+    setSignupStatus("Please enter your password.");
+    return;
+  }
+  if (!confirmPassword) {
+    setSignupStatus("Please confirm your password.");
+    return;
+  }
+  if (password !== confirmPassword) {
+    setSignupStatus("Passwords do not match. Please try again.");
+    return;
+  }
+
+  setSignupStatus("Creating account…");
+  const res = await registerUser({ name, email, password });
+  if (!res.ok) {
+    setSignupStatus(res.error || "Could not create account.");
+    return;
+  }
+
+  // Automatically log in after successful registration.
+  setSession({ email, name });
+  try {
+    createLegacyLoginRecord(email);
+  } catch {
+    // ignore
+  }
+
+  setSignupStatus("Account created. Redirecting to dashboard…");
+  setTimeout(() => {
+    window.location.href = "./dashboard.html";
+  }, 500);
+});
+
 // ===== Phase 3: Marketplace logic-only (localStorage) =====
 const MARKET_SESSION_KEY = "groomhub_v2_marketplace";
+
 
 const marketplaceData = {
   products: [
@@ -195,7 +415,12 @@ function renderMarketplace() {
   const gridEl = document.getElementById("marketGrid");
   const statusEl = document.getElementById("marketStatus");
 
-  if (!categoryEl || !gridEl) return;
+  if (statusEl) statusEl.textContent = "booted: renderMarketplace()";
+
+  if (!categoryEl || !gridEl) {
+    if (statusEl) statusEl.textContent = "error: missing marketCategory/marketGrid";
+    return;
+  }
 
   const categories = [
     "All",
@@ -369,11 +594,19 @@ function renderMarketplace() {
   }
 }
 
+// Always enforce auth gating on protected pages.
+if (typeof document !== "undefined") {
+  requireAuthOrRedirect();
+  applySessionToHeader();
+}
+
+
 // Boot marketplace on its page
 if (typeof document !== "undefined") {
   if (document.getElementById("marketGrid")) {
     renderMarketplace();
   }
 }
+
 
 

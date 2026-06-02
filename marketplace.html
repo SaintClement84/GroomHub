@@ -58,13 +58,16 @@
           <div class="side-label">Shopping Cart</div>
           <div class="user-card" style="justify-content: space-between">
             <div>
-              <div class="user-name">Items</div>
-              <div class="user-role">Saved for checkout</div>
+              <div class="user-name" id="currentUserName">Items</div>
+              <div class="user-role" id="currentUserRole">
+                Saved for checkout
+              </div>
             </div>
             <div
               class="ring"
               id="cartCount"
               style="width: 70px; height: 70px; border-width: 8px"
+              aria-label="Cart count"
             >
               0%
             </div>
@@ -125,24 +128,14 @@
               style="justify-content: flex-start; gap: 16px"
             >
               <span style="font-weight: 900">Category</span>
-              <select
-                id="marketCategory"
-                style="
-                  border-radius: 14px;
-                  border: 1px solid var(--accent-border);
-                  background: rgba(0, 0, 0, 0.25);
-                  color: var(--text);
-                  padding: 12px 14px;
-                  font-weight: 900;
-                "
-              >
+              <select id="marketCategory">
                 <option value="All">All</option>
               </select>
               <span
                 id="marketStatus"
                 class="tiny-muted"
                 style="margin-left: auto"
-                >—</span
+                >Booting…</span
               >
             </div>
           </div>
@@ -169,7 +162,7 @@
             <div class="badge">localStorage</div>
           </div>
 
-          <div class="grid2" style="grid-template-columns: 1fr 1fr">
+          <div class="grid2">
             <div>
               <div class="section-title">Cart items</div>
               <div

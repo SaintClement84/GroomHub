@@ -50,11 +50,14 @@
         <div class="side-section">
           <div class="side-label">Current User</div>
           <div class="user-card">
-            <div class="user-avatar">KD</div>
+            <div class="user-avatar" id="currentUserAvatar">KD</div>
             <div class="user-meta">
-              <div class="user-name">Kabelo D.</div>
-              <div class="user-role">Student Entrepreneur</div>
+              <div class="user-name" id="currentUserName">Kabelo D.</div>
+              <div class="user-role" id="currentUserRole">
+                Student Entrepreneur
+              </div>
             </div>
+            <div class="mini-note" id="onlineBadge">Logged in online</div>
           </div>
         </div>
       </div>
@@ -79,15 +82,19 @@
               <h3 class="panel-title">Week View</h3>
               <div class="panel-sub">Static preview</div>
             </div>
-            <div class="legend">
+
+            <div class="legend" aria-label="Calendar legend">
               <div class="legend-item">
-                <span class="dot blocked"></span> Lecture
+                <span class="dot blocked" aria-hidden="true"></span>
+                <span>Lecture</span>
               </div>
               <div class="legend-item">
-                <span class="dot booked"></span> Booked
+                <span class="dot booked" aria-hidden="true"></span>
+                <span>Booked</span>
               </div>
               <div class="legend-item">
-                <span class="dot available"></span> Available
+                <span class="dot available" aria-hidden="true"></span>
+                <span>Available</span>
               </div>
             </div>
           </div>

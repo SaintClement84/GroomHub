@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -11,7 +11,7 @@
 
     <header class="static-topbar">
       <a class="static-brand" href="./index.html" aria-label="GroomHub home">
-        <span class="logo" style="width:38px;height:38px;">G</span>
+        <span class="logo" style="width: 38px; height: 38px">G</span>
         <span>
           <span class="brand-title">GROOMHUB</span>
           <span class="brand-sub">Dashboard Preview</span>
@@ -52,11 +52,14 @@
         <div class="side-section">
           <div class="side-label">Current User</div>
           <div class="user-card">
-            <div class="user-avatar">KD</div>
+            <div class="user-avatar" id="currentUserAvatar">KD</div>
             <div class="user-meta">
-              <div class="user-name">Kabelo D.</div>
-              <div class="user-role">Student Entrepreneur</div>
+              <div class="user-name" id="currentUserName">Kabelo D.</div>
+              <div class="user-role" id="currentUserRole">
+                Student Entrepreneur
+              </div>
             </div>
+            <div class="mini-note" id="onlineBadge">Logged in online</div>
           </div>
         </div>
       </div>
@@ -65,7 +68,9 @@
         <div class="static-top">
           <div>
             <h1 class="page-title">Dashboard Overview</h1>
-            <p class="muted">Manage academics, bookings and grooming workflows.</p>
+            <p class="muted">
+              Manage academics, bookings and grooming workflows.
+            </p>
           </div>
           <div class="top-actions">
             <div class="badge">WCAG AA Enabled</div>
@@ -82,8 +87,9 @@
               and <span class="gold">Entrepreneurship</span>.
             </h2>
             <p class="hero-muted">
-              GroomHub empowers student entrepreneurs through intelligent scheduling, grooming management,
-              and social engagement while protecting academic commitments.
+              GroomHub empowers student entrepreneurs through intelligent
+              scheduling, grooming management, and social engagement while
+              protecting academic commitments.
             </p>
             <div class="hero-buttons">
               <a class="btn" href="./dashboard.html">Explore Dashboard</a>
@@ -117,10 +123,14 @@
               <div class="badge gold">Week View</div>
             </div>
             <div class="calendar-grid">
-              <div class="cal-days">
-                <div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div>
+              <div class="cal-days" role="list" aria-label="Week days">
+                <div role="listitem">Mon</div>
+                <div role="listitem">Tue</div>
+                <div role="listitem">Wed</div>
+                <div role="listitem">Thu</div>
+                <div role="listitem">Fri</div>
               </div>
-              <div class="cal-cells" id="calCells">
+              <div class="cal-cells" id="calCells" aria-label="Calendar cells">
                 <!-- static cells rendered by script -->
               </div>
             </div>
@@ -144,7 +154,9 @@
                 <div class="row-value">14:00 — 15:00</div>
               </div>
               <a class="btn" href="./book.html">Confirm Booking</a>
-              <div class="tiny-muted">Demo preview. Confirming does not create a real booking.</div>
+              <div class="tiny-muted">
+                Demo preview. Confirming does not create a real booking.
+              </div>
             </div>
           </div>
         </section>
@@ -175,10 +187,34 @@
               <a class="small-pill" href="./tracker.html">Add Style</a>
             </div>
             <div class="look-grid">
-              <div class="look-card"><div class="look-img a"></div><div class="look-meta"><div class="look-title">Low Fade</div><div class="look-sub">Modern • Clean • Sharp</div></div></div>
-              <div class="look-card"><div class="look-img b"></div><div class="look-meta"><div class="look-title">Line Up</div><div class="look-sub">Crisp • Precise</div></div></div>
-              <div class="look-card"><div class="look-img c"></div><div class="look-meta"><div class="look-title">Braids</div><div class="look-sub">Protective • Stylish</div></div></div>
-              <div class="look-card"><div class="look-img d"></div><div class="look-meta"><div class="look-title">Beard Trim</div><div class="look-sub">Balanced • Clean</div></div></div>
+              <div class="look-card">
+                <div class="look-img a"></div>
+                <div class="look-meta">
+                  <div class="look-title">Low Fade</div>
+                  <div class="look-sub">Modern • Clean • Sharp</div>
+                </div>
+              </div>
+              <div class="look-card">
+                <div class="look-img b"></div>
+                <div class="look-meta">
+                  <div class="look-title">Line Up</div>
+                  <div class="look-sub">Crisp • Precise</div>
+                </div>
+              </div>
+              <div class="look-card">
+                <div class="look-img c"></div>
+                <div class="look-meta">
+                  <div class="look-title">Braids</div>
+                  <div class="look-sub">Protective • Stylish</div>
+                </div>
+              </div>
+              <div class="look-card">
+                <div class="look-img d"></div>
+                <div class="look-meta">
+                  <div class="look-title">Beard Trim</div>
+                  <div class="look-sub">Balanced • Clean</div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -202,7 +238,10 @@
                   </div>
                   <div class="gold-pill">Top Rated</div>
                 </div>
-                <p class="social-text">Fresh fade completed for a student client before presentation week.</p>
+                <p class="social-text">
+                  Fresh fade completed for a student client before presentation
+                  week.
+                </p>
                 <div class="social-stats">
                   <span>❤️ 124 Likes</span>
                   <span>💬 28 Comments</span>
@@ -228,9 +267,15 @@
               </div>
             </div>
             <div class="service-list">
-              <div class="service"><span>Fade Cut</span><span class="gold">R120</span></div>
-              <div class="service"><span>Beard Trim</span><span class="gold">R80</span></div>
-              <div class="service"><span>Line Up</span><span class="gold">R60</span></div>
+              <div class="service">
+                <span>Fade Cut</span><span class="gold">R120</span>
+              </div>
+              <div class="service">
+                <span>Beard Trim</span><span class="gold">R80</span>
+              </div>
+              <div class="service">
+                <span>Line Up</span><span class="gold">R60</span>
+              </div>
             </div>
             <a class="small-pill" href="./social.html">Message Stylist</a>
           </div>
@@ -240,10 +285,22 @@
           <div class="panel">
             <h3 class="panel-title">Settings</h3>
             <div class="form-rows compact">
-              <div class="toggle-row"><span>Dark Mode Enabled</span><span class="switch-on" aria-hidden="true"></span></div>
-              <div class="toggle-row"><span>Academic Scheduler Active</span><span class="switch-on" aria-hidden="true"></span></div>
-              <div class="toggle-row"><span>Push Notifications Enabled</span><span class="switch-on" aria-hidden="true"></span></div>
-              <div class="toggle-row"><span>Keyboard Accessibility Enabled</span><span class="switch-on" aria-hidden="true"></span></div>
+              <div class="toggle-row">
+                <span>Dark Mode Enabled</span
+                ><span class="switch-on" aria-hidden="true"></span>
+              </div>
+              <div class="toggle-row">
+                <span>Academic Scheduler Active</span
+                ><span class="switch-on" aria-hidden="true"></span>
+              </div>
+              <div class="toggle-row">
+                <span>Push Notifications Enabled</span
+                ><span class="switch-on" aria-hidden="true"></span>
+              </div>
+              <div class="toggle-row">
+                <span>Keyboard Accessibility Enabled</span
+                ><span class="switch-on" aria-hidden="true"></span>
+              </div>
             </div>
           </div>
 
@@ -251,15 +308,29 @@
             <div class="panel-head">
               <div>
                 <h3 class="panel-title">Director Dashboard</h3>
-                <div class="panel-sub">Administrative oversight and analytics</div>
+                <div class="panel-sub">
+                  Administrative oversight and analytics
+                </div>
               </div>
               <div class="live">LIVE</div>
             </div>
             <div class="kpi-grid">
-              <div class="kpi"><div class="muted">Users</div><div class="kpi-value">2,451</div></div>
-              <div class="kpi"><div class="muted">Bookings</div><div class="kpi-value">12,040</div></div>
-              <div class="kpi"><div class="muted">Conflict Rate</div><div class="kpi-value">0%</div></div>
-              <div class="kpi"><div class="muted">Engagement</div><div class="kpi-value">92%</div></div>
+              <div class="kpi">
+                <div class="muted">Users</div>
+                <div class="kpi-value">2,451</div>
+              </div>
+              <div class="kpi">
+                <div class="muted">Bookings</div>
+                <div class="kpi-value">12,040</div>
+              </div>
+              <div class="kpi">
+                <div class="muted">Conflict Rate</div>
+                <div class="kpi-value">0%</div>
+              </div>
+              <div class="kpi">
+                <div class="muted">Engagement</div>
+                <div class="kpi-value">92%</div>
+              </div>
             </div>
             <div class="insights">
               <div class="ins-title">System Insights</div>
@@ -274,8 +345,5 @@
         </section>
       </div>
     </main>
-
-
   </body>
 </html>
-
