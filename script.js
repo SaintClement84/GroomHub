@@ -257,10 +257,30 @@ $("#demoLogin")?.addEventListener("click", async (e) => {
 });
 
 
+function showSignupPanel() {
+  const loginPanel = document.getElementById("loginPanel");
+  const signupPanel = document.getElementById("signupPanel");
+  if (loginPanel) loginPanel.style.display = "none";
+  if (signupPanel) signupPanel.style.display = "block";
+}
+
+function showLoginPanel() {
+  const loginPanel = document.getElementById("loginPanel");
+  const signupPanel = document.getElementById("signupPanel");
+  if (signupPanel) signupPanel.style.display = "none";
+  if (loginPanel) loginPanel.style.display = "block";
+}
+
 $("#signupLink")?.addEventListener("click", (e) => {
   e.preventDefault();
-  window.location.href = "./signup.html";
+  showSignupPanel();
 });
+
+$("#backToLogin")?.addEventListener("click", (e) => {
+  e.preventDefault();
+  showLoginPanel();
+});
+
 
 
 $("#forgotLink")?.addEventListener("click", (e) => {

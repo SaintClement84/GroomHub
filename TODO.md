@@ -1,6 +1,12 @@
-# TODO
+# Task tracker
 
-- [x] Implement interactive booking receipt with tabs on `book.html`.
-- [x] Add booking state + receipt rendering + confirm/lock logic in `script.js`.
-- [x] Add CSS for tabs + receipt styling in `styles.css`.
-- [ ] Quick manual test: select service/stylist/time; verify receipt updates; confirm only enabled when complete.
+- [x] Investigated GitHub push issue (non-fast-forward due to diverged history)
+- [x] Pulled remote changes with unrelated histories allowance
+- [x] Pushed updates successfully to `origin/master`
+- [x] Started local static server and verified pages served
+- [x] Merge signup UI into `index.html` (single-page duality)
+
+- [ ] Remove redundant “Back to login” link
+- [ ] Update `script.js` to stop redirecting to `signup.html` and instead show signup section on the same page
+- [ ] Commit and push updated pages
+- [ ] Verify locally (login + signup + demo flow)

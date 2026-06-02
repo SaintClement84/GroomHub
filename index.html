@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -10,7 +10,7 @@
     <div class="bg-grid" aria-hidden="true"></div>
 
     <main class="page">
-      <section class="card" role="region" aria-label="Login card">
+      <section class="card" role="region" aria-label="GroomHub auth card">
         <header class="brand">
           <div class="logo" aria-hidden="true">G</div>
           <div class="brand-text">
@@ -19,43 +19,142 @@
           </div>
         </header>
 
-        <div class="hero">
-          <div class="pill">WCAG AA • Constraint-first Scheduling</div>
-          <h2>Log in to your dashboard</h2>
-          <p class="muted">
-            This is a static preview page (no backend). It’s ready for you to wire into your internet login later.
-          </p>
-        </div>
-
-        <form id="loginForm" class="form" autocomplete="on">
-          <label class="field">
-            <span class="label">Email</span>
-            <input id="email" name="email" type="email" placeholder="name@university.edu" required />
-          </label>
-
-          <label class="field">
-            <span class="label">Password</span>
-            <input id="password" name="password" type="password" placeholder="Create a strong password" required />
-          </label>
-
-          <div class="row">
-            <label class="check">
-              <input id="remember" name="remember" type="checkbox" />
-              <span>Remember me</span>
-            </label>
-            <a class="link" href="#" id="forgotLink">Forgot?</a>
+        <!-- LOGIN -->
+        <div id="loginPanel" class="panel" aria-labelledby="loginHeading">
+          <div class="hero">
+            <div class="pill">WCAG AA • Constraint-first Scheduling</div>
+            <h2 id="loginHeading">Log in to your dashboard</h2>
+            <p class="muted">
+              This is a static preview page (no backend). It’s ready for you to
+              wire into your internet login later.
+            </p>
           </div>
 
-          <button class="btn" type="submit">Log in</button>
+          <form id="loginForm" class="form" autocomplete="on">
+            <label class="field">
+              <span class="label">Email</span>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                placeholder="name@university.edu"
+                required
+              />
+            </label>
 
-          <p class="hint" id="status" role="status" aria-live="polite"></p>
-        </form>
+            <label class="field">
+              <span class="label">Password</span>
+              <input
+                id="password"
+                name="password"
+                type="password"
+                placeholder="Create a strong password"
+                required
+              />
+            </label>
 
-        <div class="divider" aria-hidden="true"></div>
+            <div class="row">
+              <label class="check">
+                <input id="remember" name="remember" type="checkbox" />
+                <span>Remember me</span>
+              </label>
+              <a class="link" href="#" id="forgotLink">Forgot?</a>
+            </div>
 
-        <div class="actions">
-          <a class="btn secondary" href="#" id="demoLogin">Continue as demo</a>
-          <a class="btn ghost" href="#" id="signupLink">Create account</a>
+            <button class="btn" type="submit">Log in</button>
+
+            <p class="hint" id="status" role="status" aria-live="polite"></p>
+          </form>
+
+          <div class="divider" aria-hidden="true"></div>
+
+          <div class="actions">
+            <a class="btn secondary" href="#" id="demoLogin"
+              >Continue as demo</a
+            >
+            <a class="btn ghost" href="#" id="signupLink">Create account</a>
+          </div>
+        </div>
+
+        <!-- SIGNUP -->
+        <div
+          id="signupPanel"
+          class="panel"
+          style="display: none"
+          aria-labelledby="signupHeading"
+        >
+          <div class="hero">
+            <div class="pill">
+              Built-in DB (localStorage) • WCAG-friendly form
+            </div>
+            <h2 id="signupHeading">Register to access your dashboard</h2>
+            <p class="muted">
+              This static prototype stores accounts in your browser only.
+            </p>
+          </div>
+
+          <form id="signupForm" class="form" autocomplete="on">
+            <label class="field">
+              <span class="label">Full name (optional)</span>
+              <input
+                id="name"
+                name="name"
+                type="text"
+                placeholder="e.g., Thandi M."
+                maxlength="80"
+              />
+            </label>
+
+            <label class="field">
+              <span class="label">Email</span>
+              <input
+                id="signupEmail"
+                name="email"
+                type="email"
+                placeholder="name@university.edu"
+                required
+              />
+            </label>
+
+            <label class="field">
+              <span class="label">Password</span>
+              <input
+                id="signupPassword"
+                name="password"
+                type="password"
+                placeholder="Create a strong password"
+                required
+              />
+            </label>
+
+            <label class="field">
+              <span class="label">Confirm password</span>
+              <input
+                id="confirmPassword"
+                name="confirmPassword"
+                type="password"
+                placeholder="Re-enter your password"
+                required
+              />
+            </label>
+
+            <div class="row">
+              <div
+                id="signupStatus"
+                class="hint"
+                role="status"
+                aria-live="polite"
+              ></div>
+            </div>
+
+            <button class="btn" type="submit">Create account</button>
+          </form>
+
+          <div class="divider" aria-hidden="true"></div>
+
+          <div class="actions">
+            <a class="btn ghost" href="#" id="backToLogin">Back to login</a>
+          </div>
         </div>
 
         <footer class="foot">
@@ -68,4 +167,3 @@
     <script src="./script.js"></script>
   </body>
 </html>
-
