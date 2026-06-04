@@ -623,6 +623,166 @@ if (typeof document !== "undefined") {
   applySessionToHeader();
 }
 
+// ===== Booking flow (book.html) =====
+(function initBookingFlow() {
+  const serviceGrid = document.getElementById("serviceGrid");
+  const stylistGrid = document.getElementById("stylistGrid");
+  const timeGrid = document.getElementById("timeGrid");
+  const confirmBtn = document.getElementById("confirmBookingBtn");
+
+  if (!serviceGrid || !stylistGrid || !timeGrid || !confirmBtn) return;
+
+  const summaryService = document.getElementById("summaryService");
+  const summaryStylist = document.getElementById("summaryStylist");
+  const summaryTime = document.getElementById("summaryTime");
+  const summaryDate = document.getElementById("summaryDate");
+  const bookingTinyMuted = document.getElementById("bookingTinyMuted");
+
+  const state = {
+    serviceId: null,
+    serviceName: null,
+    stylistId: null,
+    stylistName: null,
+    timeId: null,
+    timeLabel: null,
+    // simple demo range for summary
+    dateLabel: summaryDate?.textContent || "Wed 14 May 2025",
+  };
+
+  function setMuted(msg) {
+    if (bookingTinyMuted) bookingTinyMuted.textContent = msg;
+  }
+
+  function setSummary() {
+    if (summaryService) summaryService.textContent = state.serviceName || "—";
+    if (summaryStylist) summaryStylist.textContent = state.stylistName || "—";
+    if (summaryDate) summaryDate.textContent = state.dateLabel;
+    if (summaryTime) {
+      if (!state.timeLabel) {
+        summaryTime.textContent = "—";
+      } else {
+        // match the static labels like “14:00 — 15:00”
+        summaryTime.textContent = `${state.timeLabel} — 15:00`;
+      }
+    }
+  }
+
+  function clearSelected(grid) {
+    grid.querySelectorAll(".selected").forEach((el) => el.classList.remove("selected"));
+  }
+
+  function selectChoice(el, grid, which) {
+    clearSelected(grid);
+    el.classList.add("selected");
+
+    if (which === "service") {
+      state.serviceId = el.getAttribute("data-service-id");
+      state.serviceName = el.getAttribute("data-service-name");
+      setMuted("Now choose a stylist and a valid time.");
+    }
+
+    if (which === "stylist") {
+      state.stylistId = el.getAttribute("data-stylist-id");
+      state.stylistName = el.getAttribute("data-stylist-name");
+      setMuted("Now choose a time.");
+    }
+
+    if (which === "time") {
+      state.timeId = el.getAttribute("data-time-id");
+      state.timeLabel = el.getAttribute("data-time-label");
+      setMuted("Ready. Confirm your booking.");
+    }
+
+    setSummary();
+  }
+
+  // Initialize from default selected items (if any)
+  const initialService = serviceGrid.querySelector(".choice.selected");
+  if (initialService) selectChoice(initialService, serviceGrid, "service");
+
+  const initialStylist = stylistGrid.querySelector(".choice.selected");
+  if (initialStylist) selectChoice(initialStylist, stylistGrid, "stylist");
+
+  const initialTime = timeGrid.querySelector("button.time:not(.blocked):not([disabled]).selected");
+  if (initialTime) {
+    selectChoice(initialTime, timeGrid, "time");
+  } else {
+    // If no initial time, keep summaryTime as static defaults (14:00 — 15:00 is in markup)
+    // but still update once user interacts.
+  }
+
+  serviceGrid.addEventListener("click", (e) => {
+    const el = e.target.closest(".choice[role='button']");
+    if (!el) return;
+    selectChoice(el, serviceGrid, "service");
+  });
+
+  stylistGrid.addEventListener("click", (e) => {
+    const el = e.target.closest(".choice[role='button']");
+    if (!el) return;
+    selectChoice(el, stylistGrid, "stylist");
+  });
+
+  timeGrid.addEventListener("click", (e) => {
+    const el = e.target.closest("button.time");
+    if (!el) return;
+    if (el.disabled || el.classList.contains("blocked")) return;
+
+    clearSelected(timeGrid);
+    el.classList.add("selected");
+    selectChoice(el, timeGrid, "time");
+  });
+
+  // Keyboard support for choice divs
+  function handleChoiceKey(e, grid, which) {
+    const key = e.key;
+    if (key !== "Enter" && key !== " ") return;
+    e.preventDefault();
+    const el = e.target.closest(".choice[role='button']");
+    if (!el) return;
+    selectChoice(el, grid, which);
+  }
+
+  serviceGrid.addEventListener("keydown", (e) => handleChoiceKey(e, serviceGrid, "service"));
+  stylistGrid.addEventListener("keydown", (e) => handleChoiceKey(e, stylistGrid, "stylist"));
+
+  // Confirm booking
+  confirmBtn.addEventListener("click", () => {
+    if (!state.serviceId || !state.stylistId || !state.timeId) {
+      setMuted("Select a service, stylist and a valid time.");
+      return;
+    }
+
+    const payload = {
+      id: `b_${Date.now()}_${Math.random().toString(16).slice(2)}`,
+      at: new Date().toISOString(),
+      user: getSession()?.user || null,
+      serviceId: state.serviceId,
+      serviceName: state.serviceName,
+      stylistId: state.stylistId,
+      stylistName: state.stylistName,
+      dateLabel: state.dateLabel,
+      timeId: state.timeId,
+      timeLabel: state.timeLabel,
+      status: "confirmed",
+    };
+
+    const BOOKINGS_KEY = "groomhub_v2_bookings";
+    const existingRaw = localStorage.getItem(BOOKINGS_KEY);
+    const existing = existingRaw ? safeJsonParse(existingRaw, { bookings: [] }) : { bookings: [] };
+    const bookings = Array.isArray(existing?.bookings) ? existing.bookings : [];
+
+    bookings.unshift(payload);
+    localStorage.setItem(BOOKINGS_KEY, JSON.stringify({ bookings: bookings.slice(0, 20) }));
+
+    // Navigate
+    window.location.href = "./dashboard.html";
+  });
+
+  // Prime selected time button style (optional UX)
+  // If user clicks around, we update summary already.
+  setSummary();
+})();
 
 // Boot marketplace on its page
 if (typeof document !== "undefined") {
@@ -630,6 +790,10 @@ if (typeof document !== "undefined") {
     renderMarketplace();
   }
 }
+
+
+
+
 
 
 
