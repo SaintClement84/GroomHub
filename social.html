@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -11,19 +11,17 @@
 
     <header class="static-topbar">
       <a class="static-brand" href="./index.html">
-        <span class="logo" style="width:38px;height:38px;">G</span>
+        <span class="logo" style="width: 38px; height: 38px">G</span>
         <span>
           <span class="brand-title">GROOMHUB</span>
           <span class="brand-sub">Social Preview</span>
         </span>
       </a>
-      <nav class="static-nav">
-        <a href="./dashboard.html" class="nav-pill">Dashboard</a>
-        <a href="./calendar.html" class="nav-pill">Calendar</a>
-        <a href="./book.html" class="nav-pill">Booking</a>
-        <a href="./tracker.html" class="nav-pill">Tracker</a>
-        <a href="./social.html" class="nav-pill active">Social</a>
-        <a href="./settings.html" class="nav-pill">Settings</a>
+      <nav class="static-nav" aria-label="Preview navigation">
+        <a href="./dashboard.html" class="nav-pill">Home</a>
+        <a href="./lookbook.html" class="nav-pill">About</a>
+        <a href="./marketplace.html" class="nav-pill">Features</a>
+        <a href="./social.html" class="nav-pill">Contacts</a>
       </nav>
     </header>
 
@@ -77,11 +75,18 @@
               <h3 class="panel-title">Composer</h3>
               <div class="panel-sub">Static preview (no post)</div>
             </div>
-            <button class="small-pill ghost" type="button" disabled>Post</button>
+            <button class="small-pill ghost" type="button" disabled>
+              Post
+            </button>
           </div>
           <div class="composer">
             <div class="composer-avatar">KD</div>
-            <input class="composer-input" type="text" value="Fresh fade completed for a student client before presentation week." disabled />
+            <input
+              class="composer-input"
+              type="text"
+              value="Fresh fade completed for a student client before presentation week."
+              disabled
+            />
           </div>
         </section>
 
@@ -95,10 +100,16 @@
               </div>
               <div class="ghost-pill">Top Rated</div>
             </div>
-            <p class="post-text">Fresh line up and beard trim. Confidence booster! ✨</p>
-            <div class="post-tags"><span>#BeardGameStrong</span><span>#CleanLook</span><span>#GroomHub</span></div>
+            <p class="post-text">
+              Fresh line up and beard trim. Confidence booster! ✨
+            </p>
+            <div class="post-tags">
+              <span>#BeardGameStrong</span><span>#CleanLook</span
+              ><span>#GroomHub</span>
+            </div>
             <div class="post-actions">
-              <span>❤️ 124</span><span>💬 28</span><span>⭐ 4.9</span><span>↗ 9</span>
+              <span>❤️ 124</span><span>💬 28</span><span>⭐ 4.9</span
+              ><span>↗ 9</span>
             </div>
           </article>
 
@@ -106,10 +117,18 @@
             <h3 class="panel-title">Trending Topics</h3>
             <div class="panel-sub">Static preview</div>
             <div class="trend-list">
-              <div class="trend"><b>FadeFriday</b><span class="muted"> · 1.2K posts</span></div>
-              <div class="trend"><b>BeardGoals</b><span class="muted"> · 982 posts</span></div>
-              <div class="trend"><b>BraidsSeason</b><span class="muted"> · 756 posts</span></div>
-              <div class="trend"><b>LocsJourney</b><span class="muted"> · 643 posts</span></div>
+              <div class="trend">
+                <b>FadeFriday</b><span class="muted"> · 1.2K posts</span>
+              </div>
+              <div class="trend">
+                <b>BeardGoals</b><span class="muted"> · 982 posts</span>
+              </div>
+              <div class="trend">
+                <b>BraidsSeason</b><span class="muted"> · 756 posts</span>
+              </div>
+              <div class="trend">
+                <b>LocsJourney</b><span class="muted"> · 643 posts</span>
+              </div>
             </div>
             <div class="mini-note">Wire to your backend later.</div>
           </aside>
@@ -118,4 +137,3 @@
     </main>
   </body>
 </html>
-

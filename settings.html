@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -11,19 +11,17 @@
 
     <header class="static-topbar">
       <a class="static-brand" href="./index.html">
-        <span class="logo" style="width:38px;height:38px;">G</span>
+        <span class="logo" style="width: 38px; height: 38px">G</span>
         <span>
           <span class="brand-title">GROOMHUB</span>
           <span class="brand-sub">Settings Preview</span>
         </span>
       </a>
-      <nav class="static-nav">
-        <a href="./dashboard.html" class="nav-pill">Dashboard</a>
-        <a href="./calendar.html" class="nav-pill">Calendar</a>
-        <a href="./book.html" class="nav-pill">Booking</a>
-        <a href="./tracker.html" class="nav-pill">Tracker</a>
-        <a href="./social.html" class="nav-pill">Social</a>
-        <a href="./settings.html" class="nav-pill active">Settings</a>
+      <nav class="static-nav" aria-label="Preview navigation">
+        <a href="./dashboard.html" class="nav-pill">Home</a>
+        <a href="./lookbook.html" class="nav-pill">About</a>
+        <a href="./marketplace.html" class="nav-pill">Features</a>
+        <a href="./social.html" class="nav-pill">Contacts</a>
       </nav>
     </header>
 
@@ -64,16 +62,29 @@
         <section class="panel">
           <h3 class="panel-title">Preferences</h3>
           <div class="form-rows compact">
-            <div class="toggle-row"><span>Dark Mode Enabled</span><span class="switch-on" aria-hidden="true"></span></div>
-            <div class="toggle-row"><span>Academic Scheduler Active</span><span class="switch-on" aria-hidden="true"></span></div>
-            <div class="toggle-row"><span>Push Notifications Enabled</span><span class="switch-on" aria-hidden="true"></span></div>
-            <div class="toggle-row"><span>Keyboard Accessibility Enabled</span><span class="switch-on" aria-hidden="true"></span></div>
+            <div class="toggle-row">
+              <span>Dark Mode Enabled</span
+              ><span class="switch-on" aria-hidden="true"></span>
+            </div>
+            <div class="toggle-row">
+              <span>Academic Scheduler Active</span
+              ><span class="switch-on" aria-hidden="true"></span>
+            </div>
+            <div class="toggle-row">
+              <span>Push Notifications Enabled</span
+              ><span class="switch-on" aria-hidden="true"></span>
+            </div>
+            <div class="toggle-row">
+              <span>Keyboard Accessibility Enabled</span
+              ><span class="switch-on" aria-hidden="true"></span>
+            </div>
           </div>
           <div class="divider"></div>
-          <button class="btn secondary" type="button" disabled>Save Changes (Preview)</button>
+          <button class="btn secondary" type="button" disabled>
+            Save Changes (Preview)
+          </button>
         </section>
       </div>
     </main>
   </body>
 </html>
-

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GroomHub — Login</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="bg-grid" aria-hidden="true"></div>
+
+    <main class="page">
+      <section class="card" role="region" aria-label="GroomHub auth card">
+        <header class="brand">
+          <div class="logo" aria-hidden="true">G</div>
+          <div class="brand-text">
+            <h1>GROOMHUB</h1>
+            <p>Student Grooming Ecosystem</p>
+          </div>
+        </header>
+
+        <!-- LOGIN -->
+        <div id="loginPanel" class="panel" aria-labelledby="loginHeading">
+          <div class="pill">
+            <h2 id="loginHeading">Log in to your dashboard</h2>
+          </div>
+
+          <form id="loginForm" class="form" autocomplete="on">
+            <label class="field">
+              <span class="label">Email</span>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                placeholder="name@university.edu"
+                required
+              />
+            </label>
+
+            <label class="field">
+              <span class="label">Password</span>
+              <input
+                id="password"
+                name="password"
+                type="password"
+                placeholder="Create a strong password"
+                required
+              />
+            </label>
+
+            <div class="row">
+              <label class="check">
+                <input id="remember" name="remember" type="checkbox" />
+                <span>Remember me</span>
+              </label>
+              <a class="link" href="#" id="forgotLink">Forgot?</a>
+            </div>
+
+            <button class="btn" type="submit">Log in</button>
+
+            <p class="hint" id="status" role="status" aria-live="polite"></p>
+          </form>
+
+          <div class="divider" aria-hidden="true"></div>
+
+          <div class="actions">
+            <a class="btn secondary" href="#" id="demoLogin"
+              >Continue as demo</a
+            >
+            <a class="btn ghost" href="#" id="signupLink">Create account</a>
+          </div>
+        </div>
+
+        <!-- SIGNUP -->
+        <div
+          id="signupPanel"
+          class="panel"
+          style="display: none"
+          aria-labelledby="signupHeading"
+        >
+          <div class="auth-split">
+            <!-- LEFT (artwork + benefits) -->
+            <aside class="auth-left" aria-label="Signup benefits">
+              <div class="pill">Hustle. Style. Success.</div>
+
+              <div class="auth-left-rule" aria-hidden="true"></div>
+
+              <p class="muted auth-left-sub">
+                Create your account and unlock a smarter way to manage your
+                academics, business, and grooming.
+              </p>
+
+              <div class="auth-benefits">
+                <div class="auth-benefit">
+                  <div class="auth-benefit-icon" aria-hidden="true">1</div>
+                  <div>
+                    <div class="auth-benefit-title">Academic Sync</div>
+                    <div class="auth-benefit-desc">
+                      Smart scheduling that respects your classes.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="auth-benefit">
+                  <div class="auth-benefit-icon" aria-hidden="true">2</div>
+                  <div>
+                    <div class="auth-benefit-title">Grooming Management</div>
+                    <div class="auth-benefit-desc">
+                      Track your styles, services and products.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="auth-benefit">
+                  <div class="auth-benefit-icon" aria-hidden="true">3</div>
+                  <div>
+                    <div class="auth-benefit-title">Community & Trust</div>
+                    <div class="auth-benefit-desc">
+                      Share, review and grow with your community.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="auth-trust"
+                role="note"
+                aria-label="Privacy and data security"
+              >
+                <div class="auth-trust-badge" aria-hidden="true">✓</div>
+                <div>
+                  <div class="auth-trust-title">
+                    Your data is secure with us.
+                  </div>
+                  <div class="auth-trust-desc">
+                    This is a static prototype — accounts are stored in your
+                    browser only.
+                  </div>
+                </div>
+              </div>
+
+              <div class="auth-hero-image-wrap" aria-hidden="true">
+                <div class="auth-hero-ring"></div>
+                <img
+                  class="auth-hero-image"
+                  src="./images/signup-model.jpg"
+                  alt=""
+                />
+              </div>
+            </aside>
+
+            <!-- RIGHT (stepper + existing form) -->
+            <section class="auth-right" aria-label="Signup form">
+              <div class="auth-stepper">
+                <div class="steps" aria-hidden="true">
+                  <div class="step active">
+                    <div class="step-dot"></div>
+                    <div>Account</div>
+                  </div>
+                  <div class="step">
+                    <div class="step-dot"></div>
+                    <div>Academic</div>
+                  </div>
+                  <div class="step">
+                    <div class="step-dot"></div>
+                    <div>Preferences</div>
+                  </div>
+                  <div class="step">
+                    <div class="step-dot"></div>
+                    <div>Complete</div>
+                  </div>
+                </div>
+              </div>
+
+              <form id="signupForm" class="form" autocomplete="on">
+                <div class="auth-form-head">
+                  <h3 class="auth-form-title">Create Your Account</h3>
+                  <p class="auth-form-sub muted">Let's get you started.</p>
+                </div>
+
+                <label class="field">
+                  <span class="label">Full name (optional)</span>
+                  <input
+                    id="name"
+                    name="name"
+                    type="text"
+                    placeholder="e.g., Thandi M."
+                    maxlength="80"
+                  />
+                </label>
+
+                <label class="field">
+                  <span class="label">Email</span>
+                  <input
+                    id="signupEmail"
+                    name="email"
+                    type="email"
+                    placeholder="name@university.edu"
+                    required
+                  />
+                </label>
+
+                <label class="field">
+                  <span class="label">Password</span>
+                  <input
+                    id="signupPassword"
+                    name="password"
+                    type="password"
+                    placeholder="Create a strong password"
+                    required
+                  />
+                </label>
+
+                <label class="field">
+                  <span class="label">Confirm password</span>
+                  <input
+                    id="confirmPassword"
+                    name="confirmPassword"
+                    type="password"
+                    placeholder="Re-enter your password"
+                    required
+                  />
+                </label>
+
+                <div class="row">
+                  <div
+                    id="signupStatus"
+                    class="hint"
+                    role="status"
+                    aria-live="polite"
+                  ></div>
+                </div>
+
+                <button class="btn" type="submit">
+                  Create Account & Continue
+                </button>
+              </form>
+
+              <div class="divider" aria-hidden="true"></div>
+
+              <div class="actions">
+                <a class="btn ghost" href="#" id="backToLogin">Back to login</a>
+              </div>
+            </section>
+          </div>
+        </div>
+
+        <footer class="foot">
+          <span>© <span id="year"></span> GroomHub</span>
+          <span class="muted">Hustle. Style. Success.</span>
+        </footer>
+      </section>
+    </main>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

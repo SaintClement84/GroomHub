@@ -165,6 +165,9 @@ function getSession() {
 }
 
 function applySessionToHeader() {
+  // Clear any demo popups if navigating between pages.
+  const popupEl = document.getElementById("demoReminderPopup");
+  if (popupEl) popupEl.remove();
   const session = getSession();
   const user = session?.user;
   if (!user) return;
@@ -257,10 +260,30 @@ $("#demoLogin")?.addEventListener("click", async (e) => {
 });
 
 
+function showSignupPanel() {
+  const loginPanel = document.getElementById("loginPanel");
+  const signupPanel = document.getElementById("signupPanel");
+  if (loginPanel) loginPanel.style.display = "none";
+  if (signupPanel) signupPanel.style.display = "block";
+}
+
+function showLoginPanel() {
+  const loginPanel = document.getElementById("loginPanel");
+  const signupPanel = document.getElementById("signupPanel");
+  if (signupPanel) signupPanel.style.display = "none";
+  if (loginPanel) loginPanel.style.display = "block";
+}
+
 $("#signupLink")?.addEventListener("click", (e) => {
   e.preventDefault();
-  window.location.href = "./signup.html";
+  showSignupPanel();
 });
+
+$("#backToLogin")?.addEventListener("click", (e) => {
+  e.preventDefault();
+  showLoginPanel();
+});
+
 
 
 $("#forgotLink")?.addEventListener("click", (e) => {
